@@ -1,6 +1,6 @@
 "use strict";
 
-var CACHE_NAME = "plain-2048-v5";
+var CACHE_NAME = "plain-2048-v6";
 var CORE_ASSETS = [
   "./",
   "index.html",

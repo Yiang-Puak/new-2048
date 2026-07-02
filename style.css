@@ -104,7 +104,7 @@ button {
   color: rgba(119, 110, 101, 0.9);
   font-size: 22px;
   font-weight: bold;
-  animation: move-up 600ms ease-in;
+  animation: move-up 220ms ease-out;
   animation-fill-mode: both;
 }
 
@@ -229,7 +229,8 @@ button {
   position: absolute;
   width: var(--cell);
   height: var(--cell);
-  transition: transform 100ms ease-in-out;
+  transition: transform 72ms ease-out;
+  will-change: transform;
 }
 
 .tile-inner {
@@ -276,23 +277,23 @@ button {
 .tile-super .tile-inner { background: #3c3a32; color: #f9f6f2; font-size: clamp(18px, 5.8vw, 30px); }
 
 .tile-new .tile-inner {
-  animation: appear 200ms ease 100ms;
+  animation: appear 110ms ease-out;
   animation-fill-mode: backwards;
 }
 
 .tile-merged .tile-inner {
   z-index: 20;
-  animation: pop 200ms ease 100ms;
+  animation: pop 125ms ease-out;
   animation-fill-mode: backwards;
 }
 
 .tile-hammered .tile-inner {
-  animation: hammer-out 180ms ease-in;
+  animation: hammer-out 140ms ease-in;
   animation-fill-mode: forwards;
 }
 
 .tile-brushed .tile-inner {
-  animation: brush-flash 180ms ease;
+  animation: brush-flash 130ms ease;
 }
 
 .game-message {

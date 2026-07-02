@@ -130,7 +130,7 @@ GameManager.prototype.scheduleAnimationCleanup = function () {
   this.animationCleanupTimer = window.setTimeout(function () {
     self.clearTransientTileState();
     self.animationCleanupTimer = null;
-  }, 230);
+  }, 200);
 };
 
 GameManager.prototype.serialize = function () {
