@@ -104,7 +104,7 @@ button {
   color: rgba(119, 110, 101, 0.9);
   font-size: 22px;
   font-weight: bold;
-  animation: move-up 220ms ease-out;
+  animation: move-up 260ms cubic-bezier(0.22, 0.75, 0.28, 1);
   animation-fill-mode: both;
 }
 
@@ -229,7 +229,7 @@ button {
   position: absolute;
   width: var(--cell);
   height: var(--cell);
-  transition: transform 72ms ease-out;
+  transition: transform 108ms cubic-bezier(0.2, 0.82, 0.22, 1);
   will-change: transform;
 }
 
@@ -244,6 +244,7 @@ button {
   font-size: clamp(30px, 10vw, 55px);
   font-weight: bold;
   line-height: 1;
+  backface-visibility: hidden;
 }
 
 .tile-position-1-1 { transform: translate(0, 0); }
@@ -277,23 +278,23 @@ button {
 .tile-super .tile-inner { background: #3c3a32; color: #f9f6f2; font-size: clamp(18px, 5.8vw, 30px); }
 
 .tile-new .tile-inner {
-  animation: appear 110ms ease-out;
+  animation: appear 135ms cubic-bezier(0.18, 0.85, 0.25, 1);
   animation-fill-mode: backwards;
 }
 
 .tile-merged .tile-inner {
   z-index: 20;
-  animation: pop 125ms ease-out;
+  animation: pop 155ms cubic-bezier(0.2, 0.95, 0.28, 1);
   animation-fill-mode: backwards;
 }
 
 .tile-hammered .tile-inner {
-  animation: hammer-out 140ms ease-in;
+  animation: hammer-out 160ms ease-in;
   animation-fill-mode: forwards;
 }
 
 .tile-brushed .tile-inner {
-  animation: brush-flash 130ms ease;
+  animation: brush-flash 155ms ease;
 }
 
 .game-message {
@@ -411,13 +412,13 @@ button {
 }
 
 @keyframes appear {
-  0% { opacity: 0; transform: scale(0); }
+  0% { opacity: 0; transform: scale(0.72); }
   100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes pop {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.18); }
+  0% { transform: scale(0.9); }
+  58% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
