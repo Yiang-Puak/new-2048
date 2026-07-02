@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#faf8ef">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="2048">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>2048</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/icons/app-icon.svg">
+    <link rel="icon" href="assets/icons/app-icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="container">
+      <header class="heading">
+        <h1 class="title">2048</h1>
+        <div class="scores-container" aria-label="分数统计">
+          <div class="score-container">0</div>
+          <div class="best-container">0</div>
+        </div>
+      </header>
+
+      <section class="above-game">
+        <p class="game-intro">合并数字方块，挑战更高分。</p>
+        <button class="restart-button" type="button">重新开始</button>
+      </section>
+
+      <section class="tool-bar" aria-label="道具">
+        <button class="tool-button hammer-button" type="button">
+          <span>消除</span>
+          <strong class="hammer-count">∞</strong>
+        </button>
+        <button class="tool-button brush-button" type="button">
+          <span>转换</span>
+          <strong class="brush-count">∞</strong>
+        </button>
+        <button class="cancel-tool-button" type="button">取消道具</button>
+      </section>
+
+      <p class="status-text">使用方向键或滑动移动方块。</p>
+
+      <section class="game-container" aria-label="2048 棋盘">
+        <div class="game-message">
+          <p></p>
+          <div class="lower">
+            <button class="retry-button" type="button">再来一局</button>
+          </div>
+        </div>
+
+        <div class="grid-container" aria-hidden="true">
+          <button class="grid-cell" type="button" data-x="0" data-y="0"></button>
+          <button class="grid-cell" type="button" data-x="1" data-y="0"></button>
+          <button class="grid-cell" type="button" data-x="2" data-y="0"></button>
+          <button class="grid-cell" type="button" data-x="3" data-y="0"></button>
+          <button class="grid-cell" type="button" data-x="0" data-y="1"></button>
+          <button class="grid-cell" type="button" data-x="1" data-y="1"></button>
+          <button class="grid-cell" type="button" data-x="2" data-y="1"></button>
+          <button class="grid-cell" type="button" data-x="3" data-y="1"></button>
+          <button class="grid-cell" type="button" data-x="0" data-y="2"></button>
+          <button class="grid-cell" type="button" data-x="1" data-y="2"></button>
+          <button class="grid-cell" type="button" data-x="2" data-y="2"></button>
+          <button class="grid-cell" type="button" data-x="3" data-y="2"></button>
+          <button class="grid-cell" type="button" data-x="0" data-y="3"></button>
+          <button class="grid-cell" type="button" data-x="1" data-y="3"></button>
+          <button class="grid-cell" type="button" data-x="2" data-y="3"></button>
+          <button class="grid-cell" type="button" data-x="3" data-y="3"></button>
+        </div>
+
+        <div class="tile-container"></div>
+      </section>
+
+      <aside class="rank-panel hidden" aria-label="选择目标数字">
+        <div class="rank-panel-inner">
+          <h2>修改为</h2>
+          <div class="rank-options"></div>
+          <button class="cancel-rank-button" type="button">取消</button>
+        </div>
+      </aside>
+
+      <aside class="install-tip hidden">
+        <p>iPhone Safari 可点分享按钮，然后选择“添加到主屏幕”。</p>
+        <button class="close-install-tip" type="button" aria-label="关闭提示">×</button>
+      </aside>
+    </main>
+
+    <script src="js/bind_polyfill.js"></script>
+    <script src="js/classlist_polyfill.js"></script>
+    <script src="js/animframe_polyfill.js"></script>
+    <script src="js/keyboard_input_manager.js"></script>
+    <script src="js/html_actuator.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/tile.js"></script>
+    <script src="js/local_storage_manager.js"></script>
+    <script src="js/game_manager.js"></script>
+    <script src="js/application.js"></script>
+  </body>
+</html>

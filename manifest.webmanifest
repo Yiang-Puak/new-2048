@@ -1,0 +1,20 @@
+{
+  "name": "2048",
+  "short_name": "2048",
+  "description": "支持道具和 PWA 的 2048 网页小游戏。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#faf8ef",
+  "background_color": "#faf8ef",
+  "icons": [
+    {
+      "src": "assets/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

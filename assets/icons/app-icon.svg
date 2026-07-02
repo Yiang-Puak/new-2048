@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="2048 图标">
+  <rect width="512" height="512" rx="96" fill="#bbada0"/>
+  <rect x="56" y="56" width="180" height="180" rx="20" fill="#eee4da"/>
+  <rect x="276" y="56" width="180" height="180" rx="20" fill="#ede0c8"/>
+  <rect x="56" y="276" width="180" height="180" rx="20" fill="#f2b179"/>
+  <rect x="276" y="276" width="180" height="180" rx="20" fill="#edc22e"/>
+  <text x="146" y="170" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="78" font-weight="900" fill="#776e65">2</text>
+  <text x="366" y="170" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="78" font-weight="900" fill="#776e65">4</text>
+  <text x="146" y="390" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="78" font-weight="900" fill="#f9f6f2">8</text>
+  <text x="366" y="390" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="68" font-weight="900" fill="#f9f6f2">2048</text>
+</svg>
