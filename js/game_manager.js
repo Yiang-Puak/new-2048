@@ -12,6 +12,8 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.effects = {};
   this.hammerPending = false;
   this.animationCleanupTimer = null;
+  this.animationPending = false;
+  this.queuedDirection = null;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -56,6 +58,8 @@ GameManager.prototype.setup = function (fresh) {
   this.selectedCell = null;
   this.effects = {};
   this.hammerPending = false;
+  this.animationPending = false;
+  this.queuedDirection = null;
   this.actuate();
 };
 
@@ -129,7 +133,16 @@ GameManager.prototype.scheduleAnimationCleanup = function () {
   this.clearAnimationCleanupTimer();
   this.animationCleanupTimer = window.setTimeout(function () {
     self.clearTransientTileState();
+    self.animationPending = false;
     self.animationCleanupTimer = null;
+
+    if (self.queuedDirection !== null) {
+      var direction = self.queuedDirection;
+      self.queuedDirection = null;
+      self.move(direction);
+    } else if (typeof self.actuator.settleTiles === "function") {
+      self.actuator.settleTiles(self.grid);
+    }
   }, 240);
 };
 
@@ -160,6 +173,11 @@ GameManager.prototype.move = function (direction) {
   var self = this;
 
   if (this.isGameTerminated() || this.activeTool || this.hammerPending) {
+    return;
+  }
+
+  if (this.animationPending) {
+    this.queuedDirection = direction;
     return;
   }
 
@@ -201,6 +219,7 @@ GameManager.prototype.move = function (direction) {
   });
 
   if (moved) {
+    this.animationPending = true;
     this.addRandomTile();
 
     if (!this.movesAvailable()) {
@@ -333,6 +352,8 @@ GameManager.prototype.useHammer = function (tile) {
   this.effects.hammered = { x: tile.x, y: tile.y };
   this.effects.suppressNewAnimation = true;
   this.hammerPending = true;
+  this.animationPending = false;
+  this.queuedDirection = null;
   this.activeTool = null;
   this.selectedCell = null;
   this.actuate();
@@ -374,6 +395,8 @@ GameManager.prototype.applyBrushValue = function (value) {
   tile.value = value;
   this.effects.brushed = { x: tile.x, y: tile.y };
   this.effects.suppressNewAnimation = true;
+  this.animationPending = false;
+  this.queuedDirection = null;
   this.activeTool = null;
   this.selectedCell = null;
   this.actuator.hideRankPicker();

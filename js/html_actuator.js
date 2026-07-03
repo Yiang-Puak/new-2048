@@ -43,6 +43,22 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
   });
 };
 
+HTMLActuator.prototype.settleTiles = function (grid) {
+  var self = this;
+
+  window.requestAnimationFrame(function () {
+    self.clearContainer(self.tileContainer);
+
+    grid.cells.forEach(function (column) {
+      column.forEach(function (cell) {
+        if (cell) {
+          self.addTile(cell, { suppressNewAnimation: true });
+        }
+      });
+    });
+  });
+};
+
 HTMLActuator.prototype.clearContainer = function (container) {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -62,6 +78,7 @@ HTMLActuator.prototype.addTile = function (tile, effects) {
   }
 
   if (tile.previousPosition) {
+    classes.push("tile-distance-" + this.movementDistance(tile.previousPosition, tile));
     window.requestAnimationFrame(function () {
       classes[2] = self.positionClass({ x: tile.x, y: tile.y });
       wrapper.setAttribute("class", classes.join(" "));
@@ -117,6 +134,10 @@ HTMLActuator.prototype.normalizePosition = function (position) {
 HTMLActuator.prototype.positionClass = function (position) {
   position = this.normalizePosition(position);
   return "tile-position-" + position.x + "-" + position.y;
+};
+
+HTMLActuator.prototype.movementDistance = function (from, to) {
+  return Math.max(1, Math.min(3, Math.abs(from.x - to.x) + Math.abs(from.y - to.y)));
 };
 
 HTMLActuator.prototype.updateScore = function (score) {
