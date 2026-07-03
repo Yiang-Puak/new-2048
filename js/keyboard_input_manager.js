@@ -110,6 +110,33 @@ KeyboardInputManager.prototype.listen = function () {
     return false;
   }
 
+  function cellFromPoint(point) {
+    var cells = gameContainer.querySelectorAll(".grid-cell");
+
+    for (var i = 0; i < cells.length; i += 1) {
+      var rect = cells[i].getBoundingClientRect();
+      if (point.x >= rect.left && point.x <= rect.right
+        && point.y >= rect.top && point.y <= rect.bottom) {
+        return {
+          x: Number(cells[i].dataset.x),
+          y: Number(cells[i].dataset.y)
+        };
+      }
+    }
+
+    return null;
+  }
+
+  function emitCellFromPoint(point) {
+    var cell = cellFromPoint(point);
+    if (cell) {
+      self.emit("cell", cell);
+      return true;
+    }
+
+    return false;
+  }
+
   gameContainer.addEventListener(this.eventTouchstart, function (event) {
     if ((!window.navigator.msPointerEnabled && event.touches.length > 1)
       || (event.targetTouches && event.targetTouches.length > 1)) {
@@ -135,27 +162,33 @@ KeyboardInputManager.prototype.listen = function () {
   }, { passive: false });
 
   gameContainer.addEventListener(this.eventTouchend, function (event) {
+    var touchPoint = getTouchPoint(event);
+
     if (touchHandled || touchStartClientX === undefined || touchStartClientY === undefined) {
       touchStartClientX = undefined;
       touchStartClientY = undefined;
       return;
     }
 
-    emitSwipeIfReady(event, 18);
+    if (!emitSwipeIfReady(event, 18)) {
+      emitCellFromPoint(touchPoint);
+    }
     touchStartClientX = undefined;
     touchStartClientY = undefined;
   }, { passive: false });
 
   gameContainer.addEventListener("click", function (event) {
     var cell = event.target.closest(".grid-cell");
-    if (!cell) {
+    if (cell) {
+      event.stopPropagation();
+      self.emit("cell", {
+        x: Number(cell.dataset.x),
+        y: Number(cell.dataset.y)
+      });
       return;
     }
 
-    self.emit("cell", {
-      x: Number(cell.dataset.x),
-      y: Number(cell.dataset.y)
-    });
+    emitCellFromPoint({ x: event.clientX, y: event.clientY });
   });
 };
 
