@@ -63,6 +63,10 @@ KeyboardInputManager.prototype.listen = function () {
 
   this.bindButtonPress(".retry-button", this.restart);
   this.bindButtonPress(".restart-button", this.restart);
+  this.bindButtonPress(".undo-button", function (event) {
+    event.preventDefault();
+    self.emit("undo");
+  });
   this.bindButtonPress(".hammer-button", function (event) {
     event.preventDefault();
     self.emit("tool", "hammer");

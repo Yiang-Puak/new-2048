@@ -14,9 +14,11 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.animationCleanupTimer = null;
   this.animationPending = false;
   this.queuedDirection = null;
+  this.lastChanceState = null;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
+  this.inputManager.on("undo", this.undoLastMove.bind(this));
   this.inputManager.on("tool", this.toggleTool.bind(this));
   this.inputManager.on("cancelTool", this.cancelTool.bind(this));
   this.inputManager.on("cell", this.handleCell.bind(this));
@@ -32,6 +34,25 @@ GameManager.prototype.restart = function () {
   this.setup(true);
 };
 
+GameManager.prototype.undoLastMove = function () {
+  if (!this.over || !this.lastChanceState || this.hammerPending) {
+    return;
+  }
+
+  this.clearAnimationCleanupTimer();
+  this.grid = new Grid(this.lastChanceState.grid.size, this.lastChanceState.grid.cells);
+  this.score = this.lastChanceState.score || 0;
+  this.over = false;
+  this.lastChanceState = null;
+  this.activeTool = null;
+  this.selectedCell = null;
+  this.effects = { suppressNewAnimation: true };
+  this.animationPending = false;
+  this.queuedDirection = null;
+  this.actuator.hideRankPicker();
+  this.actuate();
+};
+
 GameManager.prototype.isGameTerminated = function () {
   return this.over;
 };
@@ -43,12 +64,14 @@ GameManager.prototype.setup = function (fresh) {
     this.grid = new Grid(previousState.grid.size, previousState.grid.cells);
     this.score = previousState.score || 0;
     this.over = !!previousState.over;
+    this.lastChanceState = previousState.lastChanceState || null;
     this.hammerCount = this.initialTools;
     this.brushCount = this.initialTools;
   } else {
     this.grid = new Grid(this.size);
     this.score = 0;
     this.over = false;
+    this.lastChanceState = null;
     this.hammerCount = this.initialTools;
     this.brushCount = this.initialTools;
     this.addStartTiles();
@@ -82,11 +105,7 @@ GameManager.prototype.actuate = function () {
     this.storageManager.setBestScore(this.score);
   }
 
-  if (this.over) {
-    this.storageManager.clearGameState();
-  } else {
-    this.storageManager.setGameState(this.serialize());
-  }
+  this.storageManager.setGameState(this.serialize());
 
   this.actuator.actuate(this.grid, this.buildMetadata());
 
@@ -101,6 +120,8 @@ GameManager.prototype.buildMetadata = function () {
     hammerCount: this.hammerCount,
     brushCount: this.brushCount,
     activeTool: this.activeTool,
+    toolInProgress: this.hammerPending,
+    canUndo: this.over && !!this.lastChanceState,
     maxValue: this.getMaxValue(),
     effects: this.effects
   };
@@ -110,6 +131,7 @@ GameManager.prototype.updateToolInterface = function () {
   var metadata = this.buildMetadata();
   this.actuator.updateTools(metadata);
   this.actuator.updateStatus(metadata);
+  this.actuator.updateMessage(metadata);
 };
 
 GameManager.prototype.clearTransientTileState = function () {
@@ -150,7 +172,8 @@ GameManager.prototype.serialize = function () {
   return {
     grid: this.grid.serialize(),
     score: this.score,
-    over: this.over
+    over: this.over,
+    lastChanceState: this.lastChanceState
   };
 };
 
@@ -186,6 +209,7 @@ GameManager.prototype.move = function (direction) {
   var vector = this.getVector(direction);
   var traversals = this.buildTraversals(vector);
   var moved = false;
+  var stateBeforeMove = this.serialize();
 
   this.prepareTiles();
 
@@ -224,6 +248,9 @@ GameManager.prototype.move = function (direction) {
 
     if (!this.movesAvailable()) {
       this.over = true;
+      this.lastChanceState = stateBeforeMove;
+    } else {
+      this.lastChanceState = null;
     }
 
     this.actuate();
@@ -310,7 +337,7 @@ GameManager.prototype.positionsEqual = function (first, second) {
 };
 
 GameManager.prototype.toggleTool = function (tool) {
-  if (this.over || this.hammerPending) {
+  if (this.hammerPending) {
     return;
   }
 
@@ -328,7 +355,7 @@ GameManager.prototype.cancelTool = function () {
 };
 
 GameManager.prototype.handleCell = function (cell) {
-  if (this.over || !this.activeTool) {
+  if (!this.activeTool) {
     return;
   }
 

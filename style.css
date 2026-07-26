@@ -123,6 +123,7 @@ button {
 
 .restart-button,
 .retry-button,
+.undo-button,
 .cancel-rank-button,
 .cancel-tool-button {
   min-height: 42px;
@@ -323,9 +324,16 @@ button {
 }
 
 .game-message p {
-  margin: 0 0 26px;
+  margin: 0 0 8px;
   color: #776e65;
   font-size: clamp(42px, 14vw, 60px);
+  font-weight: bold;
+}
+
+.game-rescue-hint {
+  margin: 0 18px 20px;
+  color: #776e65;
+  font-size: 15px;
   font-weight: bold;
 }
 

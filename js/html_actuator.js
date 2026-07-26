@@ -10,6 +10,7 @@ function HTMLActuator() {
   this.cancelToolButton = document.querySelector(".cancel-tool-button");
   this.hammerCount = document.querySelector(".hammer-count");
   this.brushCount = document.querySelector(".brush-count");
+  this.undoButton = document.querySelector(".undo-button");
   this.rankPanel = document.querySelector(".rank-panel");
   this.rankOptions = document.querySelector(".rank-options");
 
@@ -35,11 +36,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     self.updateTools(metadata);
     self.updateStatus(metadata);
 
-    if (metadata.terminated) {
-      self.message(false);
-    } else {
-      self.clearMessage();
-    }
+    self.updateMessage(metadata);
   });
 };
 
@@ -167,18 +164,19 @@ HTMLActuator.prototype.updateTools = function (metadata) {
   this.cancelToolButton.disabled = !metadata.activeTool;
   this.hammerButton.classList.toggle("active", metadata.activeTool === "hammer");
   this.brushButton.classList.toggle("active", metadata.activeTool === "brush");
+  this.undoButton.disabled = !metadata.canUndo;
   this.gameContainer.classList.toggle("tool-active", !!metadata.activeTool);
 };
 
 HTMLActuator.prototype.updateStatus = function (metadata) {
   var text = "使用方向键或滑动移动方块。";
 
-  if (metadata.terminated) {
-    text = "游戏结束，可以重新开始。";
-  } else if (metadata.activeTool === "hammer") {
+  if (metadata.activeTool === "hammer") {
     text = "消除模式：点击一个数字方块删除。";
   } else if (metadata.activeTool === "brush") {
     text = "转换模式：点击一个数字方块修改为 2、4、8、16、32 或 128。";
+  } else if (metadata.terminated) {
+    text = "游戏结束，可撤回一步或使用道具补救。";
   } else if (metadata.maxValue > 2048) {
     text = "已超过 2048，可以继续向更高数字合成。";
   }
@@ -193,6 +191,14 @@ HTMLActuator.prototype.formatToolCount = function (value) {
 HTMLActuator.prototype.message = function () {
   this.messageContainer.classList.add("game-over");
   this.messageContainer.querySelector("p").textContent = "游戏结束";
+};
+
+HTMLActuator.prototype.updateMessage = function (metadata) {
+  if (metadata.terminated && !metadata.activeTool && !metadata.toolInProgress) {
+    this.message();
+  } else {
+    this.clearMessage();
+  }
 };
 
 HTMLActuator.prototype.clearMessage = function () {
