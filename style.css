@@ -12,6 +12,10 @@
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
+.collection-back { margin: 0 0 20px; font-size: 14px; }
+.collection-back a { color: #776e65; text-decoration: none; }
+.collection-back a:focus-visible { outline: 2px solid #8f7a66; outline-offset: 4px; }
+
 * {
   box-sizing: border-box;
 }

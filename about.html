@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f3eb"><title>怎么玩 · 闲棋</title>
+  <link rel="stylesheet" href="collection.css"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="assets/icons/app-icon.svg">
+</head>
+<body><main class="shell">
+  <header class="site-header"><a class="brand" href="./"><span class="brand-mark">棋</span>闲棋</a><a class="back-link" href="./">← 选择游戏</a></header>
+  <article class="about-content">
+    <p class="eyebrow">放下手机，一起下一盘</p><h1>怎么玩？看这里。</h1>
+    <p class="rules-intro">中国象棋、五子棋、翻翻棋、揭棋都是<strong>两个人共用一块屏幕，轮流操作</strong>。2048 是一个人玩。棋局会自动保存，回到首页或刷新后可以接着玩。</p>
+    <nav class="rules-nav" aria-label="跳到游戏规则"><a href="#xiangqi">中国象棋</a><a href="#gomoku">五子棋</a><a href="#banqi">翻翻棋</a><a href="#jieqi">揭棋</a><a href="#2048">2048</a></nav>
+
+    <section id="xiangqi" class="rule-section">
+      <p class="eyebrow">01 / 中国象棋</p><h2>先把对方的将帅逼到无路可走。</h2>
+      <p>红方先走。每次点自己的棋子，再点想走到的位置。绿点表示能移动过去，红圈表示能吃掉那里的对方棋子。</p>
+      <div class="rule-callout"><strong>象棋吃子不分大小。</strong>只要符合这枚棋子的走法，就能吃掉对方棋子。兵也可以吃车，士也可以吃马。</div>
+      <h3>每种棋子怎么走？</h3>
+      <table class="rules-table"><thead><tr><th scope="col">棋子</th><th scope="col">走法</th></tr></thead><tbody>
+        <tr><th scope="row">车</th><td>横着或竖着走，想走几格都可以；中间不能隔着其他棋子。</td></tr>
+        <tr><th scope="row">马</th><td>走“日”字：先朝一个方向走两格，再拐一格。朝那个方向紧挨着马的第一格若有棋子，就不能往这边跳，叫“蹩马腿”。</td></tr>
+        <tr><th scope="row">相／象</th><td>斜着走两格，像“田”字的对角线。中间那一格必须空着，不能越过中间的河。</td></tr>
+        <tr><th scope="row">仕／士</th><td>斜着走一格，只能待在将帅所在的九宫里。九宫就是棋盘两端画了两条交叉斜线的小方框。</td></tr>
+        <tr><th scope="row">帅／将</th><td>横着或竖着走一格，也只能待在自己的九宫里。</td></tr>
+        <tr><th scope="row">炮</th><td>不吃子时像车一样走，不能跨过棋子。吃子时，要在炮和目标之间<strong>恰好隔着一枚棋子</strong>；隔着的棋子属于谁都行。</td></tr>
+        <tr><th scope="row">兵／卒</th><td>没过河时只能向前一格；过河后可以向前、向左或向右一格，始终不能后退。</td></tr>
+      </tbody></table>
+      <h3>什么时候必须救将帅？</h3>
+      <ul><li><strong>将军：</strong>对方下一步能吃你的将帅。这一手必须想办法救它，例如移开将帅、吃掉攻击它的棋子，或挡住攻击路线。</li><li><strong>不能送将：</strong>不能走出让自己的将帅被对方直接吃掉的一步。两个将帅也不能在同一条竖线上、中间没有棋子挡着地直接面对面。</li><li><strong>将死：</strong>被将军后，怎么走都救不了将帅，你就输了。</li><li><strong>困毙：</strong>虽然没被将军，但一枚棋子都不能合法移动，也算输。</li></ul>
+      <p>“重新开局”还能选让一马，适合水平不同的两个人；残局练习则从较少的棋子开始，双方继续下。</p>
+      <a class="rule-source" href="https://www.xiangqi.com/how-to-play-xiangqi">查看象棋规则来源 ↗</a>
+    </section>
+
+    <section id="gomoku" class="rule-section">
+      <p class="eyebrow">02 / 五子棋</p><h2>先连成五个，就是赢家。</h2>
+      <ul><li>黑方先下，两人轮流点一个空的交叉点放棋子。落下后不能移动，也没有吃子。</li><li>同一种颜色的棋子，<strong>横着、竖着或斜着连续连成五个或更多</strong>，就赢了。</li><li>这里用简单的自由规则，没有“三三”“四四”“长连”等禁手，黑白双方的落子限制相同。</li><li>棋盘全部下满，还没人连成五个，就算和棋。</li></ul>
+    </section>
+
+    <section id="banqi" class="rule-section">
+      <p class="eyebrow">03 / 翻翻棋 · 小盘暗棋</p><h2>先翻出颜色，再比大小吃子。</h2>
+      <div class="rule-callout"><strong>这里所有翻开的棋子，平时都横着或竖着走一格。</strong><br>马不走“日”，象不走“田”，士也不斜走。炮只有在吃子时可以隔子跳过去。</div>
+      <h3>开局怎么分红黑？</h3>
+      <p>32 枚棋子随机盖在 4 × 8 的格子里。玩家一先翻一枚：翻出红棋，玩家一就是红方；翻出黑棋，玩家一就是黑方。另一位玩家拿另一种颜色，接着轮流行动。</p>
+      <h3>轮到我时，可以做什么？</h3>
+      <ul><li><strong>翻棋：</strong>点任意一枚盖着的棋子，把它翻开，不管它最后属于谁，这一手都结束。</li><li><strong>走棋：</strong>选自己的明子，也就是已经翻开的棋子，横着或竖着移动一格。</li><li><strong>吃子：</strong>用自己的明子吃对方的明子。不能移动盖着的棋子，也不能吃盖着的棋子。</li></ul>
+      <h3>谁能吃谁？</h3>
+      <p>通常是<strong>大的能吃小的，同样大小可以互吃，小的不能吃大的</strong>。从大到小是：</p>
+      <div class="rank-order" aria-label="从大到小：将帅、士仕、象相、车、马、炮、兵卒"><span>将／帅</span><b>＞</b><span>士／仕</span><b>＞</b><span>象／相</span><b>＞</b><span>车</span><b>＞</b><span>马</span><b>＞</b><span>炮</span><b>＞</b><span>兵／卒</span></div>
+      <p>例如：士能吃象、车、马、炮、兵，也能吃对方的士；但不能吃将。马能吃对方的马、炮、兵，不能吃车、象、士或将。</p>
+      <h3>两个例外一定要记住</h3>
+      <ul><li><strong>小兵克大将：</strong>兵／卒能吃将／帅，将／帅反而不能吃兵／卒。兵／卒还可以吃对方的兵／卒。</li><li><strong>炮不比大小：</strong>炮吃子必须与目标在同一行或同一列，中间恰好隔一枚棋子。那枚棋子可以是明子，也可以是暗子，可以是自己的，也可以是对方的。目标必须是对方的明子，大小不限，距离不限。炮不能直接吃紧挨着它的棋子。</li></ul>
+      <div class="rule-example"><span>炮</span><span>→</span><span>中间一枚棋子</span><span>→</span><span>对方的明子</span></div>
+      <p>当棋盘已经没有暗子可翻，而轮到的一方既走不了也吃不了时，这一方输。连续 80 步既不翻棋、也不吃子，或同一局面出现三次，就算和棋。</p>
+      <p class="rule-small">翻翻棋各地有不同玩法，这里固定采用上面这套规则。</p><a class="rule-source" href="https://zh.wikipedia.org/wiki/暗棋">查看暗棋规则来源 ↗</a>
+    </section>
+
+    <section id="jieqi" class="rule-section">
+      <p class="eyebrow">04 / 揭棋</p><h2>第一步看位置，揭开后看身份。</h2>
+      <div class="rule-callout"><strong>揭棋保留象棋的棋子走法，吃子不比大小。</strong><br>揭开的马走“日”、象走“田”、士斜走一格。它和上面“所有棋子横竖一格”的翻翻棋是两种游戏。</div>
+      <h3>开局是什么样？</h3>
+      <p>使用完整的象棋棋盘。将和帅放在正常位置，始终明着；双方其余各 15 枚棋子打乱后，盖在自己一侧的标准开局位置。红方先走。</p>
+      <h3>盖着的棋子怎么走第一步？</h3>
+      <p><strong>先看它占着什么位置，暂时按那个位置原来的棋子走。</strong>盖在车的位置，就先当车走；盖在兵的位置，第一步就只能向前一格。走完这一步，自动翻开，之后只按它的真实身份走。</p>
+      <div class="rule-example"><span>兵的位置</span><span>→</span><span>先向前一格</span><span>→</span><span>揭出马，以后走“日”</span></div>
+      <h3>揭开以后，与普通象棋有什么不同？</h3>
+      <ul><li><strong>士：</strong>仍然斜走一格，但可以离开九宫，也可以过河。</li><li><strong>象：</strong>仍然斜走两格，中间不能有棋子挡着，但可以过河。</li><li><strong>其他棋子：</strong>按普通象棋走法。将帅不能出九宫，兵不能后退，马仍会被蹩腿，炮吃子仍要隔一枚。</li></ul>
+      <p>盖着的棋子可以吃子，也可以被吃掉；<strong>被吃掉的暗子不公开身份，双方都不能查看</strong>。将军、救将、将死、困毙和将帅不能照面的要求，与普通象棋相同。暗子能否攻击将帅，按它所在开局位置的临时走法判断。</p>
+      <a class="rule-source" href="https://qizhe.org.cn/home/?p=848">查看揭棋规则来源 ↗</a>
+    </section>
+
+    <section id="2048" class="rule-section">
+      <p class="eyebrow">05 / 2048</p><h2>把相同数字，合成更大的数字。</h2>
+      <ul><li>在棋盘上向上、下、左、右滑动；电脑也可以用方向键。所有数字会一起往那个方向移动。</li><li>两个相同的数字碰在一起，就合成两倍的数字，例如 2＋2 变成 4，4＋4 变成 8。每枚方块在一次滑动里最多合并一次。</li><li>有效移动后会随机增加一个 2 或 4。目标是不断合成更大的数字，达到 2048 后也能继续。</li><li>“消除”可以删掉一个方块；“转换”可以把一个方块改成按钮提供的数字。这两个道具都可以重复使用。</li><li>棋盘满了、又没有相邻的相同数字可以合并时，本局结束。可以撤回一步，或用道具救回本局，也可以重新开始。</li></ul>
+    </section>
+
+    <section class="rule-section"><p class="eyebrow">一起玩的约定</p><h2>悔棋、认输和和棋</h2>
+      <ul><li><strong>悔棋：</strong>撤回刚才的一步，棋类最多保留最近 100 步。翻翻棋和揭棋要双方同意，因为翻出的身份即使盖回去，也已经知道了。</li><li><strong>认输：</strong>轮到的一方确认认输后，对方获胜。</li><li><strong>和棋：</strong>两个人都同意不再分胜负时，点“双方和棋”并确认。</li><li><strong>重新开局：</strong>替换当前棋局，所以需要再确认一次。</li></ul>
+      <h3>象棋和揭棋的反复走棋，怎么处理？</h3>
+      <p>同一个棋局、同一方走棋的局面第三次出现时，通常判和。如果这段反复走棋中，只有一方每一手都在将军，就判这一方长将输。连续 120 步没吃子，揭棋也没揭开新棋子，会判和。<strong>这里每人走一次算一步，不是两个人各走一次才算一步。</strong></p>
+      <p class="rule-small">这里适合朋友休闲对弈。反复追着某枚棋子吃等更复杂的比赛规则，不自动裁决，由两人商量。</p>
+      <h3>存档和离线怎么用？</h3><p>每款游戏分别保留一局，存在当前设备的这个浏览器里，不上传，也不会自动同步到其他设备。第一次联网打开后，游戏会缓存，之后可以离线继续。在 iPad Safari 分享菜单里选择“添加到主屏幕”，下次打开更方便。清理浏览器数据会清掉存档和缓存。</p>
+    </section>
+
+    <section class="rule-section credits"><p class="eyebrow">开源致谢</p><h2>感谢这些开源作品</h2>
+      <ul><li>2048 保留原仓库的玩法和道具，基于 <a href="https://github.com/gabrielecirulli/2048">Gabriele Cirulli / 2048</a>，保留原 <a href="LICENSE">MIT 许可</a>和版权。</li><li>象棋走法借鉴并改写自 <a href="https://github.com/Hanazar-Games/XiangQi-webgame/tree/a0ba4b97e39a3045c06961edea78c600fcae89ff">Hanazar-Games / XiangQi-webgame</a>，© 2026 Hanazar Games。这里增加了揭棋等玩法，重新制作了双人界面。<a href="licenses/Hanazar-Games-MIT.txt">原 MIT 许可全文</a>。</li><li>五子棋、翻翻棋、合集界面和存档功能在本仓库实现，没有广告、外部字体或统计脚本。</li></ul>
+    </section>
+  </article><footer class="site-footer"><span>闲棋 · 随时开一局</span><a href="./">回到首页</a></footer>
+</main><script src="js/pwa.js"></script></body>
+</html>

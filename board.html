@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f3eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="闲棋">
+  <title>双人棋盘 · 闲棋</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/app-icon.png">
+  <link rel="stylesheet" href="collection.css">
+</head>
+<body>
+  <main class="play-shell shell">
+    <header class="site-header"><a class="brand" href="./"><span class="brand-mark">棋</span>闲棋</a><a class="back-link" href="./">← 选择游戏</a></header>
+    <div class="play-heading"><div><p class="eyebrow" id="game-tag">双人同屏</p><h1 id="game-title">棋盘加载中</h1></div><button id="rules-button" class="quiet-button" type="button">玩法说明</button></div>
+    <div class="play-layout">
+      <section class="table-area" aria-label="对弈区域">
+        <div id="top-player" class="player-bar"></div>
+        <div class="board-frame"><svg id="board" xmlns="http://www.w3.org/2000/svg" aria-label="棋盘"></svg></div>
+        <div id="bottom-player" class="player-bar"></div>
+      </section>
+      <aside class="game-panel">
+        <section class="turn-panel"><p class="panel-label">这一手</p><h2 id="turn-title"></h2><p id="status" role="status" aria-live="polite"></p></section>
+        <div class="action-grid"><button id="undo" type="button">悔棋一步</button><button id="flip" type="button">翻转棋盘</button><button id="new-game" type="button">重新开局</button><button id="draw" type="button">双方和棋</button></div>
+        <button id="resign" class="quiet-button full-width" type="button">认输</button>
+        <label class="face-setting"><input id="face-to-face" type="checkbox" checked> 对坐模式 <span>上方文字朝向对方</span></label>
+        <p class="save-note" id="save-note">每走一步自动保存，随时回来继续。</p>
+        <section class="moves-panel"><div class="panel-heading"><h2>对局记录</h2><span id="move-count"></span></div><ol id="moves" aria-label="最近走棋记录"></ol></section>
+        <div class="captured-panel"><p class="panel-label">已吃棋子</p><div id="captured"></div></div>
+      </aside>
+    </div>
+    <footer class="site-footer"><span>两人轮流点选 · 棋局保存在这台设备</span><a href="about.html">规则与致谢</a></footer>
+    <noscript>请开启 JavaScript 后游玩。</noscript>
+  </main>
+  <dialog id="rules-dialog"><div class="dialog-heading"><h2>玩法说明</h2><button class="dialog-close" type="button" aria-label="关闭说明">×</button></div><div id="rules-content"></div><button class="primary-button dialog-close" type="button">知道了</button></dialog>
+  <dialog id="confirm-dialog"><h2 id="confirm-title"></h2><p id="confirm-copy"></p><div id="setup-area" hidden><label for="setup">选择开局</label><select id="setup"><option value="standard">标准对局</option><option value="red-handicap">红方让一马</option><option value="black-handicap">黑方让一马</option><option value="rook-endgame">残局练习 · 车兵对车卒</option><option value="horse-endgame">残局练习 · 马炮兵</option></select></div><div class="dialog-actions"><button id="confirm-cancel" type="button">取消</button><button id="confirm-ok" class="primary-button" type="button">确认</button></div></dialog>
+  <script type="module" src="js/games/app.mjs"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

@@ -1,11 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="2048 图标">
-  <rect width="512" height="512" rx="96" fill="#bbada0"/>
-  <rect x="56" y="56" width="180" height="180" rx="20" fill="#eee4da"/>
-  <rect x="276" y="56" width="180" height="180" rx="20" fill="#ede0c8"/>
-  <rect x="56" y="276" width="180" height="180" rx="20" fill="#f2b179"/>
-  <rect x="276" y="276" width="180" height="180" rx="20" fill="#edc22e"/>
-  <text x="146" y="170" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="78" font-weight="900" fill="#776e65">2</text>
-  <text x="366" y="170" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="78" font-weight="900" fill="#776e65">4</text>
-  <text x="146" y="390" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="78" font-weight="900" fill="#f9f6f2">8</text>
-  <text x="366" y="390" text-anchor="middle" font-family="Clear Sans, Helvetica Neue, Arial, sans-serif" font-size="68" font-weight="900" fill="#f9f6f2">2048</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="闲棋图标">
+  <rect width="512" height="512" rx="96" fill="#2f5842"/>
+  <rect x="106" y="106" width="300" height="300" rx="42" fill="#ead5af"/>
+  <path d="M166 136V376M226 136V376M286 136V376M346 136V376M136 166H376M136 226H376M136 286H376M136 346H376" stroke="#9b8055" stroke-width="4"/>
+  <circle cx="226" cy="226" r="37" fill="#f7e4bf" stroke="#a64332" stroke-width="7"/>
+  <circle cx="286" cy="286" r="34" fill="#303d33"/>
 </svg>

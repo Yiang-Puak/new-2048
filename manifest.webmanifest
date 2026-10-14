@@ -1,14 +1,20 @@
 {
-  "name": "2048",
-  "short_name": "2048",
-  "description": "支持道具和 PWA 的 2048 网页小游戏。",
+  "name": "闲棋 · 无广告小游戏合集",
+  "short_name": "闲棋",
+  "description": "中国象棋、五子棋、翻翻棋、揭棋和2048，双人同屏，离线游玩。",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "theme_color": "#faf8ef",
-  "background_color": "#faf8ef",
+  "orientation": "any",
+  "theme_color": "#f6f3eb",
+  "background_color": "#f6f3eb",
   "icons": [
+    {
+      "src": "assets/icons/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "assets/icons/app-icon.svg",
       "sizes": "any",

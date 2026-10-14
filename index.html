@@ -1,102 +1,75 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#faf8ef">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="2048">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <title>2048</title>
-    <link rel="manifest" href="manifest.webmanifest">
-    <link rel="apple-touch-icon" href="assets/icons/app-icon.svg">
-    <link rel="icon" href="assets/icons/app-icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <main class="container">
-      <header class="heading">
-        <h1 class="title">2048</h1>
-        <div class="scores-container" aria-label="分数统计">
-          <div class="score-container">0</div>
-          <div class="best-container">0</div>
-        </div>
-      </header>
-
-      <section class="above-game">
-        <p class="game-intro">合并数字方块，挑战更高分。</p>
-        <button class="restart-button" type="button">重新开始</button>
-      </section>
-
-      <section class="tool-bar" aria-label="道具">
-        <button class="tool-button hammer-button" type="button">
-          <span>消除</span>
-          <strong class="hammer-count">∞</strong>
-        </button>
-        <button class="tool-button brush-button" type="button">
-          <span>转换</span>
-          <strong class="brush-count">∞</strong>
-        </button>
-        <button class="cancel-tool-button" type="button">取消道具</button>
-      </section>
-
-      <p class="status-text">使用方向键或滑动移动方块。</p>
-
-      <section class="game-container" aria-label="2048 棋盘">
-        <div class="game-message">
-          <p></p>
-          <span class="game-rescue-hint">撤回一步或使用上方道具救回本局</span>
-          <div class="lower">
-            <button class="undo-button" type="button">撤回一步</button>
-            <button class="retry-button" type="button">再来一局</button>
-          </div>
-        </div>
-
-        <div class="grid-container" aria-hidden="true">
-          <button class="grid-cell" type="button" data-x="0" data-y="0"></button>
-          <button class="grid-cell" type="button" data-x="1" data-y="0"></button>
-          <button class="grid-cell" type="button" data-x="2" data-y="0"></button>
-          <button class="grid-cell" type="button" data-x="3" data-y="0"></button>
-          <button class="grid-cell" type="button" data-x="0" data-y="1"></button>
-          <button class="grid-cell" type="button" data-x="1" data-y="1"></button>
-          <button class="grid-cell" type="button" data-x="2" data-y="1"></button>
-          <button class="grid-cell" type="button" data-x="3" data-y="1"></button>
-          <button class="grid-cell" type="button" data-x="0" data-y="2"></button>
-          <button class="grid-cell" type="button" data-x="1" data-y="2"></button>
-          <button class="grid-cell" type="button" data-x="2" data-y="2"></button>
-          <button class="grid-cell" type="button" data-x="3" data-y="2"></button>
-          <button class="grid-cell" type="button" data-x="0" data-y="3"></button>
-          <button class="grid-cell" type="button" data-x="1" data-y="3"></button>
-          <button class="grid-cell" type="button" data-x="2" data-y="3"></button>
-          <button class="grid-cell" type="button" data-x="3" data-y="3"></button>
-        </div>
-
-        <div class="tile-container"></div>
-      </section>
-
-      <aside class="rank-panel hidden" aria-label="选择目标数字">
-        <div class="rank-panel-inner">
-          <h2>修改为</h2>
-          <div class="rank-options"></div>
-          <button class="cancel-rank-button" type="button">取消</button>
-        </div>
-      </aside>
-
-      <aside class="install-tip hidden">
-        <p>iPhone Safari 可点分享按钮，然后选择“添加到主屏幕”。</p>
-        <button class="close-install-tip" type="button" aria-label="关闭提示">×</button>
-      </aside>
-    </main>
-
-    <script src="js/bind_polyfill.js"></script>
-    <script src="js/classlist_polyfill.js"></script>
-    <script src="js/animframe_polyfill.js"></script>
-    <script src="js/keyboard_input_manager.js"></script>
-    <script src="js/html_actuator.js"></script>
-    <script src="js/grid.js"></script>
-    <script src="js/tile.js"></script>
-    <script src="js/local_storage_manager.js"></script>
-    <script src="js/game_manager.js"></script>
-    <script src="js/application.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f3eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="闲棋">
+  <title>闲棋 · 一起下一盘</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/app-icon.png">
+  <link rel="stylesheet" href="collection.css">
+</head>
+<body>
+  <main class="home shell">
+    <header class="site-header"><a class="brand" href="./"><span class="brand-mark">棋</span>闲棋</a><span class="header-note">一张棋盘，两个人的时间</span></header>
+    <section class="home-intro">
+      <div class="hero-copy">
+      <p class="eyebrow">给日常留一点闲</p>
+      <h1>一起，下一盘。</h1>
+      <p class="intro-copy">把 iPad 放在桌上，选一副棋。<br>没有广告，不用登录，打开就能玩。</p>
+      <div class="intro-tags"><span>双人同屏</span><span>本地保存</span><span>支持离线</span></div>
+      </div>
+      <svg class="hero-art" viewBox="0 0 320 270" aria-hidden="true">
+        <circle cx="173" cy="138" r="116" fill="#e6ebde"/>
+        <g transform="translate(58 38) rotate(-8 106 100)">
+          <rect x="0" y="8" width="222" height="222" rx="22" fill="#c7ab78" opacity=".3"/>
+          <rect width="222" height="222" rx="22" fill="#ead5af" stroke="#c6af85"/>
+          <path d="M31 31H191V191H31ZM71 31V191M111 31V191M151 31V191M31 71H191M31 111H191M31 151H191" fill="none" stroke="#bca477" stroke-width="1.2"/>
+          <circle cx="71" cy="76" r="29" fill="#b39566" opacity=".4"/>
+          <circle cx="71" cy="71" r="28" fill="#f7e7c9" stroke="#bca477"/>
+          <circle cx="71" cy="71" r="23" fill="none" stroke="#d0b98e"/>
+          <text x="71" y="83" text-anchor="middle" font-family="Songti SC,SimSun,serif" font-size="33" fill="#a64332">马</text>
+          <circle cx="151" cy="156" r="29" fill="#b39566" opacity=".4"/>
+          <circle cx="151" cy="151" r="28" fill="#315a43" stroke="#bda77c"/>
+          <text x="151" y="162" text-anchor="middle" font-size="30" fill="#e4d1a9">✦</text>
+          <circle cx="111" cy="111" r="4" fill="#75926e"/>
+        </g>
+      </svg>
+    </section>
+    <div class="section-heading"><h2>今天，想玩哪一局？</h2><span>五款游戏 · 随手开局</span></div>
+    <nav class="game-grid" aria-label="选择游戏">
+      <a class="game-card featured" href="board.html?game=xiangqi">
+        <div class="card-heading"><span class="card-number">01 / 经典对弈</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div class="card-art xiangqi-art" aria-hidden="true"><span class="mini-piece red">帅</span><i></i><span class="mini-piece black">将</span></div>
+        <h2>中国象棋</h2><p>车马纵横，楚河汉界。<br>标准对局、让子与残局练习。</p><span class="card-meta">双人 · 策略</span>
+      </a>
+      <a class="game-card" href="board.html?game=gomoku">
+        <div class="card-heading"><span class="card-number">02 / 简单上手</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div class="card-art gomoku-art" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b></div>
+        <h2>五子棋</h2><p>黑白交错，五子成线。<br>自由规则，一分钟就会玩。</p><span class="card-meta">双人 · 轻松</span>
+      </a>
+      <a class="game-card" href="board.html?game=banqi">
+        <div class="card-heading"><span class="card-number">03 / 翻开惊喜</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div class="card-art banqi-art" aria-hidden="true"><span class="mini-piece covered">✦</span><span class="mini-piece red">兵</span><span class="mini-piece covered">✦</span></div>
+        <h2>翻翻棋</h2><p>翻一枚，走一步。<br>一点策略，再加一点好运气。</p><span class="card-meta">双人 · 暗棋</span>
+      </a>
+      <a class="game-card" href="board.html?game=jieqi">
+        <div class="card-heading"><span class="card-number">04 / 未知棋局</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div class="card-art jieqi-art" aria-hidden="true"><span class="mini-piece covered">✦</span><span class="reveal-arrow">→</span><span class="mini-piece black">马</span></div>
+        <h2>揭棋</h2><p>走出第一步，揭开真身份。<br>熟悉的象棋，多一份未知。</p><span class="card-meta">双人 · 变化</span>
+      </a>
+      <a class="game-card number-card" href="2048.html">
+        <div class="card-heading"><span class="card-number">05 / 自己放松</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div class="card-art number-art" aria-hidden="true"><span>2</span><span>4</span><span>8</span></div>
+        <h2>2048</h2><p>滑一滑，合成更大的数字。<br>你的原版，道具和存档都在。</p><span class="card-meta">单人 · 数字</span>
+      </a>
+    </nav>
+    <aside class="home-note"><span aria-hidden="true">◎</span><p>在 iPad Safari 的分享菜单中选择“添加到主屏幕”，下次就能像小应用一样打开。首次联网打开的游戏会缓存，之后也能离线继续。</p></aside>
+    <footer class="site-footer"><span>闲棋 · 随时开一局</span><a href="about.html">玩法与开源致谢</a></footer>
+  </main>
+  <script src="js/pwa.js"></script>
+</body>
 </html>
